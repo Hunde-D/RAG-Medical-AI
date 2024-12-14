@@ -9,10 +9,17 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
+
 import { Button } from "@/components/ui/button";
 import Report from "@/components/report";
 import { useState } from "react";
 import { toast } from "sonner";
+import Chat from "@/components/chat";
 const Home = () => {
   const [reportData, setReportData] = useState<string>("");
 
@@ -46,6 +53,20 @@ const Home = () => {
             </Drawer>
           </div>
         </header>
+        <main className="flex-1  flex gap-6 overflow-auto p-4  ">
+          <ResizablePanelGroup
+            direction="horizontal"
+            className="w-full h-full overflow-auto"
+          >
+            <ResizablePanel defaultSize={40} className="max-md:hidden">
+              <Report onReportConfirmation={onReportConfirmation} />
+            </ResizablePanel>
+            <ResizableHandle withHandle className="mx-2 max-md:hidden" />
+            <ResizablePanel className="relative flex flex-col overflow-auto p-3 bg-muted/50 rounded-xl my-2 mb-4">
+              <Chat reportData={reportData} />
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </main>
       </div>
     </div>
   );

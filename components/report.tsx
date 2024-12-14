@@ -83,7 +83,7 @@ const Report = ({
   }
 
   return (
-    <div className="grid w-full items-start gap-6 p-4 pt-0 overflow-auto ">
+    <div className="grid w-full items-start gap-6 py-4 pt-0 overflow-auto ">
       <fieldset className="grid gap-6 rounded-lg border p-4">
         <legend className="text-sm font-medium">Report</legend>
         {loading && (
@@ -101,7 +101,7 @@ const Report = ({
           placeholder="Extracted data from the report will appear here. Get better recommendations by providing additional patient history and symptoms..."
         />
         <Button
-          className="bg-[#D90013]"
+          className="bg-[#D90013] my-4"
           onClick={() => onReportConfirmation(reportData)}
           variant="destructive"
         >
