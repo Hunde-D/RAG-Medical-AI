@@ -108,11 +108,7 @@ const Report = ({
           className="text-sm resize-none min-h-72 border-none p-3 shadow-none focus-visible:ring-0"
           placeholder="Extracted data from the report will appear here. Get better recommendations by providing additional patient history and symptoms..."
         />
-        <Button
-          className="bg-[#D90013] my-4"
-          onClick={handleConfirmation}
-          variant="destructive"
-        >
+        <Button className="my-4" onClick={handleConfirmation} variant="outline">
           Looks Good
         </Button>
       </fieldset>
