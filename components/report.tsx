@@ -82,6 +82,14 @@ const Report = ({
     }
   }
 
+  function handleConfirmation(): void {
+    if (!reportData) {
+      toast.error("No report data to confirm");
+      return;
+    }
+    onReportConfirmation(reportData);
+  }
+
   return (
     <div className="grid w-full items-start gap-6 py-4 pt-0 overflow-auto ">
       <fieldset className="grid gap-6 rounded-lg border p-4">
@@ -102,7 +110,7 @@ const Report = ({
         />
         <Button
           className="bg-[#D90013] my-4"
-          onClick={() => onReportConfirmation(reportData)}
+          onClick={handleConfirmation}
           variant="destructive"
         >
           Looks Good
