@@ -53,16 +53,17 @@ const Home = () => {
             </Drawer>
           </div>
         </header>
-        <main className="flex-1  flex gap-6 overflow-auto p-4  ">
+        <main className="flex-1 w-screen  flex gap-6 overflow-hidden p-4  ">
           <ResizablePanelGroup
             direction="horizontal"
-            className="w-full h-full overflow-auto"
+            className="w-full h-full overflow-hidden"
           >
-            <ResizablePanel defaultSize={40} className="max-md:hidden">
+            <ResizablePanel defaultSize={40} className="max-md:hidden ">
               <Report onReportConfirmation={onReportConfirmation} />
             </ResizablePanel>
             <ResizableHandle withHandle className="mx-2 max-md:hidden" />
-            <ResizablePanel className="relative flex flex-col overflow-auto p-3 bg-muted/50 rounded-xl my-2 mb-4">
+
+            <ResizablePanel className="relative flex flex-col max-h-[calc(100vh-85px)] md:max-h-[calc(100vh-100px)] overflow-hidden p-3 bg-muted/50 rounded-xl my-2 mb-4">
               <Chat reportData={reportData} />
             </ResizablePanel>
           </ResizablePanelGroup>
