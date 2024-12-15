@@ -75,8 +75,6 @@ export async function POST(req: Request) {
       }),
     },
   });
-  console.log("result", result);
-  console.log("result2", result.toDataStreamResponse());
   // const report = [{ id: randomUUID().toString(), text: data }];
   // const embeddings = await pc.inference.embed(
   //   model,

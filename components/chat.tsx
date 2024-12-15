@@ -15,6 +15,14 @@ const Chat = ({ reportData }: { reportData: string }) => {
   const [error, setError] = useState<string | null>(null);
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
+      initialMessages: [
+        {
+          id: "welcome",
+          role: "assistant",
+          content: "Hello!",
+        },
+      ],
+      api: "/api/chat",
       maxSteps: 5,
       onError: () => {
         toast.error(
@@ -54,7 +62,7 @@ const Chat = ({ reportData }: { reportData: string }) => {
                     "py-2 px-5 w-fit text-sm",
                     m.role === "user"
                       ? "justify-end bg-muted rounded-3xl"
-                      : "justify-start flex gap-4"
+                      : "justify-start flex gap-4 items-center"
                   )}
                 >
                   {m.role !== "user" && (
