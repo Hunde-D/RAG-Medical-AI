@@ -1,7 +1,7 @@
 // import { google } from "@ai-sdk/google";
 import { z } from "zod";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { generateText, streamText, tool } from "ai";
+import { streamText, tool } from "ai";
 // import { Pinecone } from "@pinecone-database/pinecone";
 // import { queryPcVectorStore } from "@/services/utils/query-pc-vector-store";
 // import { randomUUID } from "crypto";
