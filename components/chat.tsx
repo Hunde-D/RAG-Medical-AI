@@ -5,15 +5,25 @@ import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 import { useChat } from "ai/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { CornerDownLeft } from "lucide-react";
 import { ScrollArea } from "./ui/scroll-area";
 import { useEventListener } from "usehooks-ts";
+import { toast } from "sonner";
 
 const Chat = ({ reportData }: { reportData: string }) => {
+  const [error, setError] = useState<string | null>(null);
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
       maxSteps: 5,
+      onError: () => {
+        toast.error(
+          "Reached daily free request limit. Please try again later."
+        );
+        setError(
+          "An error occurred while processing your request. Please try again."
+        );
+      },
     });
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -64,6 +74,16 @@ const Chat = ({ reportData }: { reportData: string }) => {
                   🤖
                 </div>
                 <p className="animate-pulse">Thinking...</p>
+              </div>
+            </div>
+          )}
+          {error && (
+            <div className="w-full flex justify-start">
+              <div className="py-2 px-5 w-fit text-sm flex gap-4">
+                <div className="p-1 rounded-full border size-fit text-sm">
+                  🤖
+                </div>
+                <p className="text-destructive">Error: {error}</p>
               </div>
             </div>
           )}

@@ -19,10 +19,6 @@ const model = google("models/gemini-1.5-pro-latest", {
 });
 export async function POST(req: Request) {
   const { messages, data } = await req.json();
-  const { text } = await generateText({
-    model: google("gemini-1.5-pro-latest"),
-    prompt: "Write a vegetarian lasagna recipe for 4 people.",
-  });
   const result = streamText({
     model: model,
     messages,
