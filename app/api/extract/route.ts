@@ -13,9 +13,16 @@ values and key details from the report, including report title.
 export const POST = async (req: NextRequest) => {
   const { base64Data } = await req.json();
   const uploadedFile = fileToGenerativeModel(base64Data);
-  const generatedContent = await model.generateContent([prompt, uploadedFile]);
-  const response = generatedContent.response.text();
-  return NextResponse.json(response, { status: 200 });
+  try {
+    const generatedContent = await model.generateContent([
+      prompt,
+      uploadedFile,
+    ]);
+    const response = generatedContent.response.text();
+    return NextResponse.json(response, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: error }, { status: 400 });
+  }
 };
 
 function fileToGenerativeModel(imageData: string) {

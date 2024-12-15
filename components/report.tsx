@@ -67,17 +67,27 @@ const Report = ({
       return;
     }
     setLoading(true);
-    const response = await fetch("/api/extract", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ base64Data }),
-    });
+    try {
+      const response = await fetch("/api/extract", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ base64Data }),
+      });
 
-    if (response.ok) {
-      const data = await response.text();
-      setReportData(data);
+      if (response.ok) {
+        const data = await response.text();
+        setReportData(data);
+        setLoading(false);
+      }
+      if (!response.ok) {
+        throw new Error(
+          "Failed to extract data from the report, Reached the daily limit of the API"
+        );
+      }
+    } catch (e) {
+      toast.error(`${e}`);
       setLoading(false);
     }
   }
@@ -92,7 +102,7 @@ const Report = ({
 
   return (
     <div className="grid w-full items-start gap-6 py-4 pt-0 overflow-auto ">
-      <fieldset className="grid gap-6 rounded-lg border p-4">
+      <fieldset className="relative grid gap-6 rounded-lg border p-4">
         <legend className="text-sm font-medium">Report</legend>
         {loading && (
           <div className="absolute z-10 size-full bg-card/90 rounded-lg flex flex-row justify-center items-center">
@@ -109,7 +119,7 @@ const Report = ({
           placeholder="Extracted data from the report will appear here. Get better recommendations by providing additional patient history and symptoms..."
         />
         <Button className="my-4" onClick={handleConfirmation} variant="outline">
-          Looks Good
+          Continue
         </Button>
       </fieldset>
     </div>

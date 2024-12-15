@@ -25,7 +25,9 @@ const Home = () => {
 
   const onReportConfirmation = (report: string) => {
     setReportData(report);
-    toast.success("Report updated");
+    toast.success(
+      "Report Submited Successfully! Chat with GemMed about the report"
+    );
   };
   return (
     <div className="grid h-screen w-full">
