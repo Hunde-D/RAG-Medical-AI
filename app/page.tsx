@@ -65,7 +65,10 @@ const Home = () => {
             </ResizablePanel>
             <ResizableHandle withHandle className="mx-2 max-md:hidden" />
 
-            <ResizablePanel className="relative flex flex-col max-h-[calc(100vh-85px)] md:max-h-[calc(100vh-100px)] overflow-hidden p-3 bg-muted/50 rounded-xl my-2 mb-4">
+            <ResizablePanel
+              defaultSize={60}
+              className="relative flex flex-col max-h-[calc(100vh-85px)] md:max-h-[calc(100vh-100px)] overflow-hidden p-3 bg-muted/50 rounded-xl my-2 mb-4"
+            >
               <Chat reportData={reportData} />
             </ResizablePanel>
           </ResizablePanelGroup>
